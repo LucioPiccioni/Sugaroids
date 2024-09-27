@@ -4,34 +4,42 @@ function love.load()
     
     love.graphics.setBackgroundColor(1, 1, 1)
     spaceshipImage = love.graphics.newImage("sprites/walk/basil.png")
-    
-    posX = 0
-    posY = 0
-    angle = 0
-  
-    speed = 100.0
+
+    playerPosx = 0
+    playerPosY = 0
+    playerAngle = 0
+    playerWitdh = spaceshipImage:getWidth()
+    playerHeight = spaceshipImage:getHeight()
+    playerSpeed = 100.0
   
   end
   
   
   function love.update(dt)
     
+    mousex = 0
+    mousey = 0
+
+    mousex, mousey = love.mouse.getPosition()
+
     if love.keyboard.isDown("right") then
-      posX = posX + speed * dt
+      playerPosx = playerPosx + playerSpeed * dt
     end
     
     if love.keyboard.isDown("left") then
-      posX = posX - speed * dt
+      playerPosx = playerPosx - playerSpeed * dt
     end
     
     if love.keyboard.isDown("up") then
-      posY = posY - speed * dt
+      playerPosY = playerPosY - playerSpeed * dt
     end
     
     if love.keyboard.isDown("down") then
-      posY = posY + speed * dt
+      playerPosY = playerPosY + playerSpeed * dt
     end
-    
+
+    playerAngle = math.atan2(mousex - playerPosx, mousey - playerPosY)
+
   end
   
   
@@ -39,7 +47,7 @@ function love.load()
 
     love.graphics.setBackgroundColor(0,0,0)
     love.graphics.setColor(1, 0, 0)
-    love.graphics.draw(spaceshipImage, posX, posY, angle)
+    love.graphics.draw(spaceshipImage, playerPosx, playerPosY, playerAngle, 1, 1, playerWitdh / 2, playerHeight / 2)
   
   end
   
