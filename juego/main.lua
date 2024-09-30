@@ -1,11 +1,11 @@
 function love.load()
   
-    love.window.setTitle("Ejemplo")
+    love.window.setTitle("Sugaroids")
     
     love.graphics.setBackgroundColor(1, 1, 1)
-    spaceshipImage = love.graphics.newImage("sprites/walk/basil.png")
+    spaceshipImage = love.graphics.newImage("res/sprites/player/spaceship.png")
 
-    playerPosx = 0
+    playerPosX = 0
     playerPosY = 0
     playerAngle = 0
     playerWitdh = spaceshipImage:getWidth()
@@ -17,17 +17,17 @@ function love.load()
   
   function love.update(dt)
     
-    mousex = 0
-    mousey = 0
+    mouseX = 0
+    mouseY = 0
 
-    mousex, mousey = love.mouse.getPosition()
+    mouseX, mouseY = love.mouse.getPosition()
 
     if love.keyboard.isDown("right") then
-      playerPosx = playerPosx + playerSpeed * dt
+      playerPosX = playerPosX + playerSpeed * dt
     end
     
     if love.keyboard.isDown("left") then
-      playerPosx = playerPosx - playerSpeed * dt
+      playerPosX = playerPosX - playerSpeed * dt
     end
     
     if love.keyboard.isDown("up") then
@@ -38,7 +38,7 @@ function love.load()
       playerPosY = playerPosY + playerSpeed * dt
     end
 
-    playerAngle = math.atan2(mousex - playerPosx, mousey - playerPosY)
+    playerAngle = math.atan2(mouseY - playerPosY, mouseX - playerPosX)
 
   end
   
@@ -46,8 +46,8 @@ function love.load()
   function love.draw()
 
     love.graphics.setBackgroundColor(0,0,0)
-    love.graphics.setColor(1, 0, 0)
-    love.graphics.draw(spaceshipImage, playerPosx, playerPosY, playerAngle, 1, 1, playerWitdh / 2, playerHeight / 2)
+    
+    love.graphics.draw(spaceshipImage, playerPosX, playerPosY, playerAngle, 1, 1, playerWitdh / 2, playerHeight / 2)
   
   end
   
