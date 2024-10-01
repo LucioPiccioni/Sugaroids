@@ -4,6 +4,7 @@ function love.load()
     love.graphics.setBackgroundColor(1, 1, 1)
     spaceshipImage = love.graphics.newImage("res/sprites/player/spaceship.png")
     sugaroidImage = love.graphics.newImage("res/sprites/enemies/sugaroid.png")
+    backgroundImage = love.graphics.newImage("res/backgrounds/pacific.jfif")  
 
     playerLives = 3
     playerPosX = 0
@@ -57,8 +58,9 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.draw(backgroundImage, 0, 0)
     love.graphics.setBackgroundColor(0, 0, 0)
-    love.graphics.draw(spaceshipImage, playerPosX, playerPosY, playerAngle, playerWidth / spaceshipImage:getWidth(), playerHeight / spaceshipImage:getHeight(), playerWidth / 2, playerHeight / 2)
+    love.graphics.draw(spaceshipImage, playerPosX, playerPosY, playerAngle, playerWidth / spaceshipImage:getWidth(), playerHeight / spaceshipImage:getHeight(), spaceshipImage:getWidth() / 2, spaceshipImage:getHeight() / 2)
 
     for _, sugaroid in ipairs(sugaroids) do
         love.graphics.draw(sugaroid.image, sugaroid.x, sugaroid.y, sugaroid.angle, 32 / sugaroid.image:getWidth(), 32 / sugaroid.image:getHeight(), sugaroid.image:getWidth() / 2, sugaroid.image:getHeight() / 2)
