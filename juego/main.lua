@@ -6,12 +6,14 @@ function love.load()
     sugaroidImage = love.graphics.newImage("res/sprites/enemies/sugaroid.png")
     backgroundImage = love.graphics.newImage("res/backgrounds/pacific.jfif")  
 
+    playerFriction = newFrictionJoint()
+
     playerLives = 3
-    playerPosX = 0
-    playerPosY = 0
+    playerPosX = love.graphics.getWidth() / 2
+    playerPosY = love.graphics.getHeight() / 2
     playerAngle = 0
-    playerWidth = 64  -- Establecer el ancho deseado
-    playerHeight = 64 -- Establecer el alto deseado
+    playerWidth = 64 * 1.5
+    playerHeight = 64 * 1.5
     playerSpeed = 100.0
 
     sugaroids = {}
@@ -22,19 +24,27 @@ function love.update(dt)
     mouseX, mouseY = love.mouse.getPosition()
 
     if love.keyboard.isDown("right") then
+       if(playerPosX < love.graphics.getWidth()) then
         playerPosX = playerPosX + playerSpeed * dt
+        end
     end
     
     if love.keyboard.isDown("left") then
+        if(playerPosX > 0) then
         playerPosX = playerPosX - playerSpeed * dt
+        end
     end
     
     if love.keyboard.isDown("up") then
+        if(playerPosY > 0) then
         playerPosY = playerPosY - playerSpeed * dt
+        end
     end
     
     if love.keyboard.isDown("down") then
+        if(playerPosY < love.graphics.getHeight()) then
         playerPosY = playerPosY + playerSpeed * dt
+        end
     end
 
     playerAngle = math.atan2(mouseY - playerPosY, mouseX - playerPosX)
