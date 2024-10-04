@@ -94,15 +94,23 @@ function love.update(dt)
 
         -- Player movement
         if love.keyboard.isDown("right") then
+            if playerBody:getX() < love.graphics.getWidth() then
             playerBody:setX(playerBody:getX() + player.speed * dt)
+             end
         elseif love.keyboard.isDown("left") then
+            if playerBody:getX() > 0 then
             playerBody:setX(playerBody:getX() - player.speed * dt)
+            end
         end
         
         if love.keyboard.isDown("up") then
+            if playerBody:getY() > 0 then
             playerBody:setY(playerBody:getY() - player.speed * dt)
+            end
         elseif love.keyboard.isDown("down") then
+            if playerBody:getY() < love.graphics.getHeight() then
             playerBody:setY(playerBody:getY() + player.speed * dt)
+            end
         end
 
         -- Rotate player towards the mouse
